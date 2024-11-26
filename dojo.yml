@@ -6,9 +6,14 @@ type: workshop
 
 modules:
   - import:
-      dojo: example
-      module: hello
+      dojo: computing-101
+      module: your-first-program
   - import:
-      dojo: example
-      module: world
-
+      dojo: computing-101
+      module: memory
+  - import:
+      dojo: computing-101
+      module: assembly-crash-course
+  - import:
+      dojo: computing-101
+      module: debugging-refresher
