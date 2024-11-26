@@ -1,29 +1,14 @@
-id: example-import
+id: uh-workshop-24
 
-name: Example Import Dojo
+name: UH Dec 2024 Workshop
 
-type: example
+type: workshop
 
 modules:
-
   - import:
       dojo: example
       module: hello
+  - import:
+      dojo: example
+      module: world
 
-  - id: planet
-    name: Planet
-    description: A couple planets.
-
-    challenges:
-
-      - import:
-          dojo: example
-          module: world
-          challenge: earth
-
-      - import:
-          dojo: example
-          module: world
-          challenge: mars
-        name: Martian Planet
-        description: This is a martian planet... mars.

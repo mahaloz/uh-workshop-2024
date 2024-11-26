@@ -1,2 +1,1 @@
-This is an [example dojo](https://github.com/pwncollege/example-import-dojo).
-It imports several challenges!
+This is the University of Hawaii December 2024 pwn.college workshop Dojo.

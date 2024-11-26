@@ -1,5 +1,3 @@
-# Example Import Dojo
+# UH 2024 Workshop Dojo
 
-This repositories features an example dojo, which imports from [pwncollege/example-dojo](https://github.com/pwncollege/example-dojo).
-
-The dojo is defined by [dojo.yml](./dojo.yml).
+This repo is for the UH 2024 pwn.college workshop.
