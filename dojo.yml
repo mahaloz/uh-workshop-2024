@@ -1,19 +1,183 @@
 id: uh-workshop-24
 
 name: University of Hawaii 2024 Workshop
-
 type: workshop
 
+
 modules:
-  - import:
-      dojo: computing-101
-      module: your-first-program
-  - import:
-      dojo: computing-101
-      module: memory
-  - import:
-      dojo: computing-101
-      module: assembly-crash-course
-  - import:
-      dojo: computing-101
-      module: debugging-refresher
+
+- import:
+    dojo: computing-101
+    module: your-first-program
+- import:
+    dojo: computing-101
+    module: memory
+- import:
+  description: |
+    For these series of challenges, you'll be learning how to write assembly code!
+    See [this resource](https://static.pwn.college/workshops/dod-july-2022#how-to-assemble) for how to go from assembly code to inputting bytes to the challenge, and use this workflow for all of these challenges.
+  challenges:
+    - import:
+        challenge: level-1
+    - import:
+        challenge: level-2-a
+    - import:
+        challenge: level-2
+    - import:
+        challenge: level-3
+    - import:
+        challenge: level-4
+    - import:
+        challenge: level-5
+    - import:
+        challenge: level-6-a
+    - import:
+        challenge: level-6
+    - import:
+        challenge: level-7
+    - import:
+        challenge: level-8
+    - import:
+        challenge: level-9
+    - import:
+        challenge: level-10-a
+    - import:
+        challenge: level-10-b
+    - import:
+        challenge: level-10
+    - import:
+        challenge: level-11-a
+    - import:
+        challenge: level-11
+    - import:
+        challenge: level-12
+    - import:
+        challenge: level-13
+    - import:
+        challenge: level-14
+    - import:
+        challenge: level-15
+    - import:
+        challenge: level-16
+    - import:
+        challenge: level-17-a
+    - import:
+        challenge: level-17-b
+    - import:
+        challenge: level-17
+
+- import:
+    dojo: program-security
+    module: shellcode-injection
+  description: |
+    For these series of challenges, you'll build on your knowledge of assembly to write shellcode!
+
+    [This resource](https://static.pwn.college/workshops/dod-july-2022#funky-shellcode-tricks) has some common "gotchas" about writing assembly shellcode.
+  challenges:
+    - import:
+        challenge: level-1
+    - import:
+        challenge: level-2
+    - import:
+        challenge: level-3
+    - import:
+        challenge: level-4
+    - import:
+        challenge: level-5
+
+- import:
+    dojo: fundamentals
+    module: debugging-refresher
+  description: |
+    For these series of challenges, you'll dig into how to use a debugger to figure out what's going on.
+
+    We also have [our GDB Quick Reference](https://static.pwn.college/workshops/dod-july-2022#gdb-quick-reference) for your use.
+
+    In addition, there's a [video on installing GEF and demoing the features](https://youtu.be/iEerxtuVSks).
+
+- import:
+    dojo: program-security
+    module: reverse-engineering
+
+  description: |
+    For these series of challenges you'll need to understand how a program works by only looking at the binary code.
+
+    If you're stuck on the first level, [watch this Level 1.1 walkthrough](https://youtu.be/su18F-1wOYM), which also shows how to use Ghidra.
+    
+  challenges:
+    - import:
+        challenge: level-1-0
+    - import:
+        challenge: level-1-1
+    - import:
+        challenge: level-2-0
+    - import:
+        challenge: level-2-1
+    - import:
+        challenge: level-3-0
+    - import:
+        challenge: level-3-1
+    - import:
+        challenge: level-6-0
+    - import:
+        challenge: level-6-1
+    - import:
+        challenge: level-7-0
+      description: |
+        Busy writing solutions by hand? Check out [this solution to one of the reverse engineering levels](https://static.pwn.college/workshops/dod-july-2022#babyrev-level8-scripting-demo) that implements the backward of the transformation in Python.
+    - import:
+        challenge: level-7-1
+    - import:
+        challenge: level-9-0
+    - import:
+        challenge: level-9-1
+    - import:
+        challenge: level-10-0
+    - import:
+        challenge: level-10-1
+    - import:
+        challenge: level-13-0
+    - import:
+        challenge: level-13-1
+    - import:
+        challenge: level-14-0
+    - import:
+        challenge: level-14-1
+    - import:
+        challenge: level-15-0
+    - import:
+        challenge: level-15-1
+    - import:
+        challenge: level-16-0
+    - import:
+        challenge: level-16-1
+    - import:
+        challenge: level-17-0
+    - import:
+        challenge: level-17-1
+    - import:
+        challenge: level-18-0
+    - import:
+        challenge: level-18-1
+    - import:
+        challenge: level-19-0
+    - import:
+        challenge: level-19-1
+    - import:
+        challenge: level-20-0
+    - import:
+        challenge: level-20-1
+    - import:
+        challenge: level-21-0
+    - import:
+        challenge: level-21-1
+    - import:
+        challenge: level-22-0
+    - import:
+        challenge: level-22-1
+- import:
+    dojo: program-security
+    module: memory-errors
+- import:
+    dojo: program-security
+    module: program-exploitation
