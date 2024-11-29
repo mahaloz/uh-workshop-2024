@@ -7,7 +7,7 @@ type: workshop
 modules:
 
 - import:
-    dojo: fundamentals
+    dojo: computing-101
     module: assembly-crash-course
   description: |
     For these series of challenges, you'll be learning how to write assembly code!
@@ -83,7 +83,7 @@ modules:
         challenge: level-5
 
 - import:
-    dojo: fundamentals
+    dojo: computing-101
     module: debugging-refresher
   description: |
     For these series of challenges, you'll dig into how to use a debugger to figure out what's going on.
