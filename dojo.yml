@@ -7,14 +7,11 @@ type: workshop
 modules:
 
 - import:
-    dojo: computing-101
-    module: your-first-program
-- import:
-    dojo: computing-101
-    module: memory
-- import:
+    dojo: fundamentals
+    module: assembly-crash-course
   description: |
     For these series of challenges, you'll be learning how to write assembly code!
+
     See [this resource](https://static.pwn.college/workshops/dod-july-2022#how-to-assemble) for how to go from assembly code to inputting bytes to the challenge, and use this workflow for all of these challenges.
   challenges:
     - import:
