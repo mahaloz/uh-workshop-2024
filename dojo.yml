@@ -427,3 +427,21 @@ modules:
 - import:
     dojo: program-security
     module: program-exploitation
+    challenges:
+    - import:
+        challenge: level-1-0
+    - import:
+        challenge: level-1-1
+    - import:
+        challenge: level-2-0
+    - import:
+        challenge: level-2-1
+    - import:
+        challenge: level-3-0
+    - import:
+        challenge: level-3-1
+    - import:
+        challenge: level-6-0
+    - import:
+        challenge: level-6-1
+    
