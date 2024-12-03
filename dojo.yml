@@ -351,8 +351,6 @@ modules:
 
   description: |
     For these series of challenges you'll need to understand how a program works by only looking at the binary code.
-
-    If you're stuck on the first level, [watch this Level 1.1 walkthrough](https://youtu.be/su18F-1wOYM), which also shows how to use Ghidra.
     
   challenges:
     - import:
