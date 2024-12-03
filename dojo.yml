@@ -393,34 +393,6 @@ modules:
         challenge: level-15-0
     - import:
         challenge: level-15-1
-    - import:
-        challenge: level-16-0
-    - import:
-        challenge: level-16-1
-    - import:
-        challenge: level-17-0
-    - import:
-        challenge: level-17-1
-    - import:
-        challenge: level-18-0
-    - import:
-        challenge: level-18-1
-    - import:
-        challenge: level-19-0
-    - import:
-        challenge: level-19-1
-    - import:
-        challenge: level-20-0
-    - import:
-        challenge: level-20-1
-    - import:
-        challenge: level-21-0
-    - import:
-        challenge: level-21-1
-    - import:
-        challenge: level-22-0
-    - import:
-        challenge: level-22-1
 - import:
     dojo: program-security
     module: memory-errors
