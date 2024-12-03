@@ -427,7 +427,7 @@ modules:
 - import:
     dojo: program-security
     module: program-exploitation
-    challenges:
+  challenges:
     - import:
         challenge: level-1-0
     - import:
