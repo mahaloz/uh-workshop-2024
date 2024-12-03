@@ -130,7 +130,7 @@ modules:
 
     **Bug Note**: GEF and Pwndbg (likely others) do not play nicely with gdb breakpoint `commands`. (This is a [known bug](https://github.com/hugsy/gef/issues/836).)
 
-To get around this, write your gdb scripts into a file (let’s say called `./commands`), and run the script from the commands line by passing `gdb` the `-n` option (which disables loading the `.gdbinit` file):
+    To get around this, write your gdb scripts into a file (let’s say called `./commands`), and run the script from the commands line by passing `gdb` the `-n` option (which disables loading the `.gdbinit` file):
 
     ```
     gdb ./a.out -n -x ./commands
