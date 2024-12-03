@@ -35,12 +35,10 @@ modules:
         challenge: relative-dot-local
     - import:
         challenge: home
-    - import:
-        dojo: linux-luminarium
-        module: commands
-    - import:
-        dojo: linux-luminarium
-        module: man
+
+- import:
+    dojo: computing-101
+    module: assembly-crash-course
   description: |
     For these series of challenges, you'll be learning how to write assembly code!
     
