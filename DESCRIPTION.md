@@ -12,6 +12,6 @@ If you are new to pwn.college, or missed the opening lectures, you can see a [qu
     - Requires rejoin if already on pwn.college Discord
     - Used to do async helping 
 
-- Dojo  (for sharing): 
+- Dojo (this challenge site): 
     - Link: [https://pwn.college/dojo/uh-workshop-24~01d381bf/join/](https://pwn.college/dojo/uh-workshop-24~01d381bf/join/)
 
