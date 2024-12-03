@@ -90,8 +90,7 @@ modules:
     module: shellcode-injection
   description: |
     For these series of challenges, you'll build on your knowledge of assembly to write shellcode!
-
-    [This resource](https://static.pwn.college/workshops/dod-july-2022#funky-shellcode-tricks) has some common "gotchas" about writing assembly shellcode.
+    
   challenges:
     - import:
         challenge: level-1
@@ -110,9 +109,94 @@ modules:
   description: |
     For these series of challenges, you'll dig into how to use a debugger to figure out what's going on.
 
-    We also have [our GDB Quick Reference](https://static.pwn.college/workshops/dod-july-2022#gdb-quick-reference) for your use.
+    ## GDB Quick Reference
+
+    **Usage:**
+
+    ```
+    gdb ./a.out
+    ```
+
+    **NOTE:** Install GEF! https://github.com/hugsy/gef GEF is a set of extension commands for GDB that *drastically* improves your user experience. There are other alternatives as well (PEDA, Pwndbg, etc.).
+
+    Use the following command to install `GEF` in the dojo:
+
+    ```
+    echo "source /opt/gef/gef.py" > ~/.gdbinit
+    ```
+
 
     In addition, there's a [video on installing GEF and demoing the features](https://youtu.be/iEerxtuVSks).
+
+    **Bug Note**: GEF and Pwndbg (likely others) do not play nicely with gdb breakpoint `commands`. (This is a [known bug](https://github.com/hugsy/gef/issues/836).)
+
+To get around this, write your gdb scripts into a file (let’s say called `./commands`), and run the script from the commands line by passing `gdb` the `-n` option (which disables loading the `.gdbinit` file):
+
+    ```
+    gdb ./a.out -n -x ./commands
+    ```
+
+    You can also pass these options to the `embryogdb` challenges like so:
+
+    ```
+    /challenge/babyrev_level5 -n -x ./commands
+    ```
+
+    **Additional Tools:**
+
+    `strace` will print a system call trace of your program
+
+    **Starting Execution:**
+
+    `r arg1 arg2 arg3 ..` will run the target with a variable number of arguments (successive run calls preserve args, so you only need to enter them once)
+
+    `starti` will start the target and place you at the very first instruction executed.
+
+    `start` will start the target and place you at the main procedure, in most programs this will be `main()` if GDB can locate it.
+
+    **Stepping Execution:**
+
+    `si` (step instruction) will step you into functions one instruction at a time
+
+    `ni` (next instruction) will step *over* calls one instruction at a time
+
+    **Examining Memory/Registers:**
+
+    `info reg` will print out all your registers
+
+    `p` will print things in hex, for example `p $rax` will print the value in rax.
+
+    `x/nuf add` will examine memory where `n`, `u`, and `f` represent the following:
+
+    `n` is the number of entries you want examined
+
+    `u` is the unit size, so `b` (byte), `h` (halfword, 2 bytes), `w` (word, 4 bytes), `g` (giant word, 8 bytes)
+
+    `f` corresponds to the format in which you want the data displayed, the two most common are `x` (hex) and `i` (instructions)
+
+    Examples:
+
+    ```
+    x/gx 0x4010000 -> Examine a "giant words" at address 0x401000
+    x/gx 0x401000  -> Examine a word at address 0x401000
+    x/8bx 0x401000 -> Examine 8 bytes at address 0x401000
+    x/8i 0x401000  -> Examine 8 instructions at address 0x40100
+    x/10gx $rsp+8  -> Examine 10 “giant words” at stack pointer + 8 bytes
+    ```
+
+    **Breakpoints:**
+
+    Remember that you can use `int3` (`0xcc`) to set a breakpoint in your shellcode!
+
+    `b *addr` will set a breakpoint at that address
+
+    `info b` will show you all of your current breakpoints along with an associated index
+
+    `disable breakpoint_index` and `enable breakpoint_index` can be used to toggle breakpoints on/off depending on the index (found with `info b`).
+
+    `disas func_name` will disassemble the function and print out all the instructions/offsets/addresses.
+
+    `disas func_name+offset` set a breakpoint from an offset in a function (found with `disas`)
 
 - import:
     dojo: program-security
