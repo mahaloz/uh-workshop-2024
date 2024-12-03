@@ -8,33 +8,15 @@ modules:
 - import:
     dojo: linux-luminarium
     module: hello
-  challenges:
-    - import:
-        challenge: hello
-    - import:
-        challenge: helloworld
 - import:
     dojo: linux-luminarium
     module: paths
-  challenges:
-    - import:
-        challenge: root
-    - import:
-        challenge: absolute
-    - import:
-        challenge: absolute-cwd
-    - import:
-        challenge: absolute-cwd-2
-    - import:
-        challenge: absolute-cwd-3
-    - import:
-        challenge: relative-naked
-    - import:
-        challenge: relative-dot
-    - import:
-        challenge: relative-dot-local
-    - import:
-        challenge: home
+- import:
+    dojo: linux-luminarium
+    module: commands
+- import:
+    dojo: linux-luminarium
+    module: man
 
 - import:
     dojo: computing-101
