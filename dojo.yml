@@ -11,8 +11,30 @@ modules:
     module: assembly-crash-course
   description: |
     For these series of challenges, you'll be learning how to write assembly code!
+    
+    ## How to Assemble
 
-    See [this resource](https://static.pwn.college/workshops/dod-july-2022#how-to-assemble) for how to go from assembly code to inputting bytes to the challenge, and use this workflow for all of these challenges.
+    First, write your assembly (say, in file `a.s`):
+
+    ```
+    .global _start
+    .intel_syntax noprefix
+    _start:
+    mov rdi, 0x1337
+    ```
+
+    Then, assemble it (this will produce file `a.out`):
+
+    ```
+    gcc -nostdlib a.s
+    ```
+
+    Disassemble it to make sure everything looks good!
+
+    ```
+    objdump -M intel -d a.out
+    ```
+
   challenges:
     - import:
         challenge: level-1
