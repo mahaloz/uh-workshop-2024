@@ -5,10 +5,18 @@ type: workshop
 
 
 modules:
-
 - import:
-    dojo: computing-101
-    module: assembly-crash-course
+    dojo: linux-luminarium
+    module: hello
+- import:
+    dojo: linux-luminarium
+    module: paths
+- import:
+    dojo: linux-luminarium
+    module: commands
+- import:
+    dojo: linux-luminarium
+    module: man
   description: |
     For these series of challenges, you'll be learning how to write assembly code!
     
