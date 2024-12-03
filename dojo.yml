@@ -8,12 +8,33 @@ modules:
 - import:
     dojo: linux-luminarium
     module: hello
+  challenges:
+    -import:
+        challenge: hello
+    -import:
+        challenge: helloworld
 - import:
     dojo: linux-luminarium
     module: paths
-- import:
-    dojo: linux-luminarium
-    module: commands
+  challenges:
+    -import:
+        challenge: root
+    -import:
+        challenge: absolute
+    -import:
+        challenge: absolute-cwd
+    -import:
+        challenge: absolute-cwd-2
+    -import:
+        challenge: absolute-cwd-3
+    -import:
+        challenge: relative-naked
+    -import:
+        challenge: relative-dot
+    -import:
+        challenge: relative-dot-local
+    -import:
+        challenge: home
   description: |
     For these series of challenges, you'll be learning how to write assembly code!
     
