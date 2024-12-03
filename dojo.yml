@@ -14,9 +14,6 @@ modules:
 - import:
     dojo: linux-luminarium
     module: commands
-- import:
-    dojo: linux-luminarium
-    module: man
   description: |
     For these series of challenges, you'll be learning how to write assembly code!
     
