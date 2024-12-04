@@ -102,6 +102,15 @@ modules:
     module: shellcode-injection
   description: |
     For these series of challenges, you'll build on your knowledge of assembly to write shellcode!
+    ## Compiling Shellcode
+    Similar to last time, but now you need the `.text` section!
+    ```
+    gcc -nostdlib -static shellcode.s -o shellcode-elf
+    objcopy --dump-section .text=shellcode-raw shellcode-elf
+    cat shellcode-raw | /challenge/the_challenge_name_here
+    ```
+
+
     ## Funky Shellcode Tricks!
 
     ### Pushing 64-bit immediates:
